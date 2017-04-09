@@ -3,9 +3,13 @@ package batailleNavale;
 import java.util.ArrayList;
 import java.util.List;
 
+import sun.java2d.pipe.OutlineTextRenderer;
+
 public class Grid
 {
 	private Case[][] grid;
+	// x,y sont Ã  utiliser pour les coordonnÃ©es, pas pour les dimensions :
+	// Ã  la limite : sizeX, sizeY, mais au mieux : width et height
 	private int x;
 	private int y;
 	private List<Boat> listBoats;
@@ -22,7 +26,7 @@ public class Grid
 	
 	public boolean placeBoat(Boat bat, int x, int y){
 		Case theCase = null;
-		String message = " Le bateau est bien positionné en cases ";
+		String message = " Le bateau est bien positionnï¿½ en cases ";
 		
 		for(int i = 0; i < bat.getLength(); i++) {
 			for (int j = 0; j < bat.getWidth(); j++){
@@ -57,6 +61,7 @@ public class Grid
 		}
 	}
 
+ 
 	public Case accessCase(int x, int y)
 	{
 		Case theCase;
@@ -66,7 +71,9 @@ public class Grid
 			System.out.println("La case n'est pas dans la grille !\n");
 		}
 		else {
-			theCase = grid[x-1][y-1];
+			//pourquoi -1 ? Ã§a provoque une erreur si on essaie d'accÃ©der Ã  la case d'indice 0,
+			//alors que votre "if" juste au-dessus vÃ©rifiait bien qu'on Ã©tait dans la grille
+			theCase = grid[x-1][y-1]; 
 		}
 
 		return theCase;
@@ -76,20 +83,20 @@ public class Grid
 		Case theCase = this.accessCase(x, y);	
 		
 		if (theCase == null){
-			return 0;
+			return 0; // renvoyer un int en fonction de la situation c'est bien, mais renvoyer une Enum c'est mieux
 		}else if (theCase.isShot()) {
-			System.out.println("Vous avez déjà tiré içi !\n");
+			System.out.println("Vous avez dï¿½jï¿½ tirï¿½ iï¿½i !\n");
 			return 1;
 		} else if (!theCase.isOccupied()){
-			System.out.println("Raté !\n");
+			System.out.println("Ratï¿½ !\n");
 			theCase.setShot(true);
 			return 2;
 		}else{
-			System.out.println("Touché !\n");
+			System.out.println("Touchï¿½ !\n");
 			theCase.setShot(true);
 			theCase.getBoat().hit();
 			if (theCase.getBoat().isSunk()){
-				System.out.println("Coulé !\n");
+				System.out.println("Coulï¿½ !\n");
 				return 4;
 			}
 			return 3;

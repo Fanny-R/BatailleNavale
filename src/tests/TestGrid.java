@@ -13,9 +13,11 @@ public class TestGrid
 	
     @Before
     public void setUp() {
-        grid = new Grid(8,2);
+        grid = new Grid(8,2); // c'est bien d'utiliser @Before, mais du coup vous ne faites aucun test sur la création de la grille
+        // typiquement : est-ce que créer une grille 0x0, ou 0x4 fait crash votre programme ? (spoiler : non ça va, mais il faudrait quand même tester)
+        // si vous vous dites "ouais mais ça va ça, peut pas mal se passer ça", imaginez que c'est un stagiaire de 3e qui va développer le programme basé sur ces tests. 
     }
-
+    
 	@Test
 	public void caseInTheGrid()
 	{

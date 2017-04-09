@@ -24,7 +24,7 @@ public class TestFire {
 
 	@Test
 	public void testSunkingBoat() {
-		assertEquals(3, grid.fire(1, 1));
+		assertEquals(3, grid.fire(1, 1)); // blah blah enum blah blah
 		assertEquals(4, grid.fire(2, 1));
 	}
 	
@@ -42,7 +42,7 @@ public class TestFire {
 	}
 	
 	@Test
-	public void testAlreadyShot() {
+	public void testAlreadyShot() { // j'aurais bien aimé un petit test pareil mais après avoir touché un bateau
 		assertEquals(2, grid.fire(3, 1));
 		assertEquals(1, grid.fire(3, 1));
 	}

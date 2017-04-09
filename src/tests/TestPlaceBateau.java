@@ -14,6 +14,8 @@ public class TestPlaceBateau {
 	Boat bateau1;
 	Boat bateau2;
 	
+	// rien à redire, c'est une bonne classe de test
+	
 	@Before
 	public void setUp() throws Exception {
 		grid = new Grid(10,20);

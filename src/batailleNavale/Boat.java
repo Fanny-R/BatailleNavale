@@ -1,5 +1,9 @@
 package batailleNavale;
 
+
+// bonne utilisation des générateurs Eclipse ;)
+// bons noms de fonctions
+
 public class Boat
 {
 	private String name;
